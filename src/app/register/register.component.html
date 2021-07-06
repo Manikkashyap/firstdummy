@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+<br><br>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <mat-card class="card1">
+          <form #userform="ngForm" (ngSubmit)="addData(userform)" novalidate>
+            <mat-toolbar class="head bg-danger">Register</mat-toolbar>
+            <br>
+            <mat-form-field>
+              <input type="text"
+              matInput placeholder="Name"
+              required name="name"
+              ngModel
+              #name="ngModel"
+              [ngClass]="{'is-invalid':userform.submitted && name.invalid}">
+            </mat-form-field>
+            <mat-error *ngIf="userform.submitted && name.invalid">
+              <mat-error *ngIf="name.errors?.required">
+                  Name Should be entered .
+              </mat-error>
+            </mat-error>
+            <br><br>
+            <mat-form-field>
+              <input type="text"
+              matInput
+              placeholder="Email"
+              emailTaken
+              email required name="email"
+              ngModel
+              #email="ngModel"
+              [ngClass]="{'is-invalid':userform.submitted && email.invalid}">
+            </mat-form-field>
+            <mat-error *ngIf="userform.submitted && email.invalid">
+              <mat-error *ngIf="email.errors?.email required">
+                Enter valid email .
+              </mat-error>
+              <mat-error *ngIf="email.errors?.required">
+                Email should be entered .
+              </mat-error>
+              <mat-error *ngIf="email.errors?.emailTaken">
+                Email already exist .
+              </mat-error>
+            </mat-error>
+            <br><br>
+            <mat-form-field>
+              <input type="text"
+              matInput
+              placeholder="Contact"
+              required name="contact"
+              ngModel
+              minlength="10"
+              #contact="ngModel"
+              [ngClass]="{'is-invalid':userform.submitted && contact.invalid}">
+            </mat-form-field>
+            <mat-error *ngIf="userform.submitted && contact.invalid">
+              <mat-error *ngIf="contact.errors?.minlength">
+                Contact Should be of 10 digits.
+              </mat-error>
+              <mat-error *ngIf="contact.errors?.required">
+                Contact Should be entered .
+              </mat-error>
+            </mat-error>
+            <br><br>
+            <mat-form-field>
+              <input type="text"
+              matInput placeholder="Address"
+              required name="address"
+              ngModel
+              #address="ngModel"
+              [ngClass]="{'is-invalid':userform.submitted && address.invalid}">
+            </mat-form-field>
+            <mat-error *ngIf="userform.submitted && address.invalid">
+              <mat-error *ngIf="address.errors?.required">
+                  Address Should be entered .
+              </mat-error>
+            </mat-error>
+            <br><br>
+            <mat-form-field>
+              <input type="text"
+              matInput
+              placeholder="Password"
+              required name="password"
+              ngModel
+              minlength="8"
+              #password="ngModel"
+              [ngClass]="{'is-invalid':userform.submitted && password.invalid}">
+            </mat-form-field>
+            <mat-error *ngIf="userform.submitted && password.invalid">
+              <mat-error *ngIf="password.errors?.required">
+                Password Should be required .
+              </mat-error>
+              <mat-error *ngIf="password.errors?.minlength">
+                Password Should be greater then 8 characters .
+              </mat-error>
+            </mat-error>
+            <br><br>
+            <button class="btn0 rounded-pill bg-danger" type = " submit " mat-raised-button>Submit</button>
+            <br><br>
+            <button class="btn1 rounded-pill bg-danger" type = "reset" mat-raised-button>Clear</button>
+            </form>
+        </mat-card>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+</div>
+<br><br><br>

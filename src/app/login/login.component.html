@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+  <div class="col-md-4">
+  <mat-card class="card1">
+        <mat-toolbar class="head bg-danger">Login</mat-toolbar>
+        <br>
+        <form #loginform="ngForm" (ngSubmit)="logindata(loginform)" novalidate>
+
+        <mat-card-content>
+           <mat-form-field>
+              <input matInput
+              placeholder="Email"
+              email required name="email"
+              #email="ngModel"
+              [ngClass] = "{'is-invalid':loginform.submitted && email.invalid}"
+              [(ngModel)]="userservice.newUser.email">
+            </mat-form-field>
+            <mat-error *ngIf="loginform.submitted && email.invalid">
+              <mat-error *ngIf="email.errors?.required">
+                  Email should be entered .
+              </mat-error>
+              <mat-error *ngIf="email.errors?.email required">
+                  Enter valid Email .
+            </mat-error>
+            </mat-error>
+            <br><br>
+
+            <mat-form-field class="example-full-width">
+              <input matInput
+              placeholder="Password"
+              required name="password"
+              #password="ngModel"
+              [ngClass] = "{'is-invalid':loginform.submitted && password.invalid}"
+              [(ngModel)]="userservice.newUser.password">
+            </mat-form-field>
+            <mat-error *ngIf="loginform.submitted && password.invalid">
+              <mat-error *ngIf="password.errors?.required">
+                  Password should be entered .
+              </mat-error>
+            </mat-error>
+            <br><br>
+
+          </mat-card-content>
+
+          <button class="btn0 rounded-pill bg-danger" type = " submit " mat-raised-button >Submit</button>
+          <br>
+
+          <br>
+          <button class="btn1 rounded-pill bg-danger" type = "reset" mat-raised-button >Clear</button>
+
+        </form>
+        <br>
+        <p class="link">Don't have an account?<a routerLink="/register"> Register </a></p>
+
+  </mat-card>
+  </div>
+  <div class="col-md-4"></div>
+  </div>
+  </div>

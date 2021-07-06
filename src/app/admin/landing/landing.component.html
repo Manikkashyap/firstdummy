@@ -1,0 +1,35 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <br><br>
+      <mat-card>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let hero of this.userinfo.data">
+          <tr>
+            <td>{{hero.name}}</td>
+            <td>{{hero.email}}</td>
+            <td>{{hero.contact}}</td>
+            <td>{{hero.address}}</td>
+            <td><button class="btn" type="submit" mat-button (click)="deleteData(hero._id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      </mat-card>
+      <br><br>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+
+

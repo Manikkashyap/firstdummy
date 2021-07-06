@@ -1,0 +1,195 @@
+<app-navbar></app-navbar>
+<br><br>
+<p class="toolbar">USER DETAILS</p>
+<div class="container-fluid">
+  <div class="row">
+<div class="col-md-0">
+
+</div>
+<div class="col-md-12">
+<mat-card class="card">
+  <table class="table table-stripped">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Contact</th>
+      <th>Address</th>
+      <th>Password</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <br><br>
+    <tr>
+      <td>1</td>
+      <td>{{this.userinfo.data.name}}</td>
+      <td>{{this.userinfo.data.email}}</td>
+      <td>{{this.userinfo.data.contact}}</td>
+      <td>{{this.userinfo.data.address}}</td>
+      <td>{{this.userinfo.data.password}}</td>
+      <td><button class="btn" type="submit" mat-button data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+      <td><button class="btn" type="submit" mat-button (click)="deleteData()"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+    </tr>
+  </table>
+</mat-card>
+</div>
+
+<div class="col-md-0">
+
+</div>
+</div>
+</div>
+<br><br>
+<br>
+
+
+
+
+<img style="height: 100px; width: 180px;" [src]="this.displayuserinfo.data[0].imagepath">
+
+
+<img _ngcontent-xel-c153="" class="img ng-star-inserted" style="height: 100px; width: 180px;" src="http://localhost:3200/uploads/123.jpg">
+
+<img _ngcontent-xel-c153="" class="img ng-star-inserted" style="height: 100px; width: 180px;" src="http://localhost:3000/uploads/123.jpg">
+
+<!-- <ng-template #profile>
+<ng-container *ngIf="localUrl; else picture">
+  <img [src]="this.displayuserinfo.data[0].imagepath" alt="No picture"  style="height:100px;width:150px;">
+</ng-container>
+</ng-template>
+
+<ng-template #picture>
+  <img src= {{this.displayuserinfo.data[0].imagepath}} class="img" style="height:100px;width:180px;">
+</ng-template> -->
+
+
+
+
+
+
+
+<br><br><br>
+<!-- Modal for update user details -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel"><mat-toolbar class="head bg-danger">UPDATE PROFILE</mat-toolbar></h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #userform="ngForm" (ngSubmit)="updateData(userform)" novalidate>
+          <br>
+          <!-- <input value="{{this.userinfo.data.name}}"> -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input
+            matInput placeholder="Ex. Karan"
+            required name="name"
+            value="karan"
+            ngModel
+            #name="ngModel"
+            [ngClass]="{'is-invalid':userform.submitted && name.invalid}">
+          </mat-form-field>
+          <mat-error *ngIf="userform.submitted && name.invalid">
+            <mat-error *ngIf="name.errors?.required">
+                Name Should be entered .
+            </mat-error>
+          </mat-error>
+          <br><br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="text"
+            matInput
+            placeholder="Ex. karan121@gmail.com"
+            emailTaken
+            email required name="email"
+            ngModel
+            #email="ngModel"
+            [ngClass]="{'is-invalid':userform.submitted && email.invalid}">
+          </mat-form-field>
+          <mat-error *ngIf="userform.submitted && email.invalid">
+            <mat-error *ngIf="email.errors?.email required">
+              Enter valid email .
+            </mat-error>
+            <mat-error *ngIf="email.errors?.required">
+              Email should be entered .
+            </mat-error>
+            <mat-error *ngIf="email.errors?.emailTaken">
+              Email already exist .
+            </mat-error>
+          </mat-error>
+          <br><br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Contact</mat-label>
+            <input type="text"
+            matInput
+            placeholder="Ex. 1207845236 , should be of length 10 ."
+            required name="contact"
+            ngModel
+            minlength="10"
+            #contact="ngModel"
+            [ngClass]="{'is-invalid':userform.submitted && contact.invalid}">
+          </mat-form-field>
+          <mat-error *ngIf="userform.submitted && contact.invalid">
+            <mat-error *ngIf="contact.errors?.minlength">
+              Contact Should be of 10 digits.
+            </mat-error>
+            <mat-error *ngIf="contact.errors?.required">
+              Contact Should be entered .
+            </mat-error>
+          </mat-error>
+          <br><br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address</mat-label>
+            <input type="text"
+            matInput placeholder="Ex. Mohali"
+            required name="address"
+            ngModel
+            #address="ngModel"
+            [ngClass]="{'is-invalid':userform.submitted && address.invalid}">
+          </mat-form-field>
+          <mat-error *ngIf="userform.submitted && address.invalid">
+            <mat-error *ngIf="address.errors?.required">
+                Address Should be entered .
+            </mat-error>
+          </mat-error>
+          <br><br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="text"
+            matInput
+            placeholder="Ex. 12345678 ,should be of minimum 8 length."
+            required name="password"
+            ngModel
+            minlength="8"
+            #password="ngModel"
+            [ngClass]="{'is-invalid':userform.submitted && password.invalid}">
+          </mat-form-field>
+          <mat-error *ngIf="userform.submitted && password.invalid">
+            <mat-error *ngIf="password.errors?.required">
+              Password Should be required .
+            </mat-error>
+            <mat-error *ngIf="password.errors?.minlength">
+              Password Should be greater then 8 characters .
+            </mat-error>
+          </mat-error>
+          <br><br>
+          <button class="btn0 rounded-pill bg-danger" [disabled]="!userform.valid" type = " submit " mat-raised-button>Submit</button>
+          <br><br>
+          <button class="btn1 rounded-pill bg-danger" data-dismiss="modal" mat-raised-button>Close</button>
+          </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+

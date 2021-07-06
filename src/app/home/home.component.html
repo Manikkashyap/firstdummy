@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<br><br><br>
+<!-- <div class="container">
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <mat-card class="card">
+        <mat-toolbar class="toolbar bg-danger">Profile Upload</mat-toolbar>
+        <br><br><br>
+        <form enctype="multipart/form-data">
+          <input type="file" name="image" ng2FileSelect [uploader]="uploader" class="form-control" >
+          <br><br><br><br>
+          <button type="submit" class=" btn rounded-pill bg-danger" mat-raised-button
+          [disabled]="!uploader.getNotUploadedItems().length">Submit</button>
+        </form>
+        <br><br>
+      </mat-card>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</div> -->
+
+<div class="container">
+  <div class="alert alert-info mt-3">User Image</div>
+  <br><br>
+  <form enctype="multipart/form-data">
+    Upload Image<input type="file" name="photo" ng2FileSelect [uploader]="uploader" class="form-control">
+    <br><br>
+    <input type="submit" value="upload" (click)="uploader.uploadAll()"
+    [disabled]="!uploader.getNotUploadedItems().length" ><br><br>
+    <input type="reset" value="Clear">
+
+  </form>
+</div>
